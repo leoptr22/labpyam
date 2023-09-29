@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Registros digitales</title>
+</head>
+
+<body>
+  <h3>Sistema de búsqueda de registros digitales Calidad Pyam 2</h3>
+  <img src="/img/pyamsinfondo.png" alt="pyam">
+
+  <h1>Subir archivo PDF</h1>
+  <form action="/upload" method="post" enctype="multipart/form-data">
+    <input type="file" name="pdfFile" accept=".pdf">
+    <button type="submit">Subir PDF</button>
+  </form>
+  <h1>Buscar registro de calidad por lote</h1>
+
+
+  <input type="text" id="searchInput" placeholder="Nombre del archivo">
+  <button onclick="searchPdf()">Buscar</button>
+  <div id="pdfViewer"></div>
+
+  <script src="main.js"></script>
+</body>
+</html>
