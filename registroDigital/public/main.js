@@ -1,11 +1,10 @@
-// Función para buscar archivos PDF
 function searchPdf() {
   const searchInput = document.getElementById('searchInput');
   const pdfViewer = document.getElementById('pdfViewer');
 
   const filename = searchInput.value.trim(); // Obtiene el nombre de búsqueda
 
-  // Realiza una solicitud GET al servidor para buscar archivos por nombre
+  // Usa una ruta relativa para buscar archivos por nombre
   fetch(`/search/${filename}`)
     .then(response => response.json())
     .then(data => {
