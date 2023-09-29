@@ -4,13 +4,12 @@ const fs = require('fs');
 const path = require('path');
 const app = express();
 
-
-app.use(express.static('public'));
-app.use(express.static('uploads'));
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'uploads')));
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'uploads/');
+    cb(null, path.join(__dirname, 'uploads'));
   },
   filename: (req, file, cb) => {
     cb(null, file.originalname);
@@ -26,7 +25,7 @@ app.get('/search/:filename', (req, res) => {
   const { filename } = req.params;
   const searchResults = [];
 
-  fs.readdir('uploads/', (err, files) => {
+  fs.readdir(path.join(__dirname, 'uploads'), (err, files) => {
     if (err) {
       console.error(err);
       res.status(500).send('Error en el servidor.');
@@ -60,6 +59,4 @@ app.get('/pdf/:filename', (req, res) => {
   }
 });
 
-app.listen(port, () => {
-  console.log(`Servidor en ejecución en http://localhost:${port}`);
-});
+module.exports = app;
